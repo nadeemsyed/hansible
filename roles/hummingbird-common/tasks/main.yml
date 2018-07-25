@@ -11,8 +11,9 @@
   when: binary_only is not defined
 - name: Configure memcached
   lineinfile:
+    backrefs: True
     path: /etc/memcached.conf
-    regexp: '^127\.0\.0\.1'
+    regexp: '^-l 127\.0\.0\.1'
     line: '-l {{ service_ip }}'
   when: binary_only is not defined
 - name: Restart memcached
